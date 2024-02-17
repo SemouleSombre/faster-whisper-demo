@@ -3,5 +3,5 @@ git+https://github.com/guillaumekln/faster-whisper.git
 pandas
 torch
 huggingface_hub
-gradio
+gradio==3.50.2
 librosa
