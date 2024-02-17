@@ -4,3 +4,4 @@ pandas
 torch
 huggingface_hub
 gradio
+librosa
