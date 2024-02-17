@@ -1,1 +1,6 @@
-
+git+https://github.com/huggingface/transformers.git
+git+https://github.com/guillaumekln/faster-whisper.git
+pandas
+torch
+huggingface_hub
+gradio
