@@ -1,1 +1,1 @@
-# Fast whisper finetuned checkpoint demo with gradio
+## Gradio app demo
