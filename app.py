@@ -13,9 +13,9 @@ DEFAULT_MODEL_NAME = "bofenghuang/whisper-large-v3-french"
 
 cached_models = {}
 
-device = "gpu" if torch.cuda.is_available() else "cpu"
+device = "cuda" if torch.cuda.is_available() else "cpu"
 
-device_compute_type = {"gpu" : "float16", "cpu" : "int8"}
+device_compute_type = {"cuda" : "float16", "cpu" : "int8"}
 
 def maybe_load_cached_pipeline(model_name):
     model = cached_models.get(model_name)
@@ -28,7 +28,7 @@ def maybe_load_cached_pipeline(model_name):
     return model
 
 
-def transcribe(filename):
+def infer(filename):
   model = maybe_load_cached_pipeline(DEFAULT_MODEL_NAME)
   model_outputs, _ = model.transcribe(filename, without_timestamps=True, **gen_kwargs)
   transcription = " ".join([segment.text for segment in model_outputs])
@@ -37,10 +37,9 @@ def transcribe(filename):
 
 description = '''Whisper Demo with a fine-tuned checkpoint by bofenghuang'''
 
-iface = gr.Interface(fn=transcribe,
+iface = gr.Interface(fn=infer,
                      inputs=[
-                         gr.Audio(source="microphone", type="filepath", label="Record Audio"),
-                         gr.Audio(source="upload", type="filepath", label="Upload Audio"),
+                         gr.Audio(sources=["microphone", "upload"], type="filepath", label="Record or upload file")
                          ],
                      outputs=gr.Textbox(label="Transcription"),
                      description=description
