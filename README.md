@@ -1,1 +1,1 @@
-# whisper-azure-demo
+# Fast whisper finetuned checkpoint demo with gradio
